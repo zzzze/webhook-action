@@ -9,6 +9,10 @@ inputs:
     description: 'Endpoint URL'
     required: true
     default: ''
+  options:
+    description: 'Options'
+    required: false
+    default: ''
 branding:
   icon: 'message-square'
   color: 'gray-dark'
@@ -16,5 +20,6 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - "${{ inputs.data }}"
+    - ${{ inputs.data }}
     - ${{ inputs.webhook_url }}
+    - ${{ inputs.options }}
