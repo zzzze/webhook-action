@@ -22,3 +22,4 @@ runs:
   args:
     - ${{ inputs.data }}
     - ${{ inputs.webhook_url }}
+    - ${{ inputs.options }}
