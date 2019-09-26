@@ -2,7 +2,6 @@
 echo "'$1'"
 echo "$2"
 echo "$3"
-curl -X POST --data "$1" $3 $2
 command="curl -X POST \$3 --data \"\$1\" \$2"
 echo $command
 eval $command
