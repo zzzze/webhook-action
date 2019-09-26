@@ -1,0 +1,20 @@
+name: 'Webhook Action'
+description: 'Posts data to an endpoint on any event'
+inputs:
+  data:
+    description: 'Data to be posted'
+    required: true
+    default: ''
+  webhook_url:
+    description: 'Endpoint URL'
+    required: true
+    default: ''
+branding:
+  icon: 'message-square'
+  color: 'gray-dark'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.data }}
+    - ${{ inputs.webhook_url }}
