@@ -20,6 +20,6 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.data }}
+    - "${{ inputs.data }}"
     - ${{ inputs.webhook_url }}
     - ${{ inputs.options }}
