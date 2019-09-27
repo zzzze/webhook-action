@@ -1,4 +1,4 @@
-name: 'Webhook Action'
+name: 'Webhook'
 description: 'Posts data to an endpoint on any event'
 inputs:
   data:
