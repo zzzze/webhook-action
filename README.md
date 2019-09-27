@@ -3,64 +3,43 @@
 [![GitHub Release][ico-release]][link-github-release]
 [![License][ico-license]](LICENSE)
 
-A Github Action for sending data to an endpoint
+A Github Action for sending data to an endpoint.
 
-Supports all [workflow event types](https://developer.github.com/webhooks/#events)
+Supports for triggering any webhook events.
 
 <hr/>
 
+
 ## Usage
 
-Sending a string:
+Sending data to trigger a github webhook event, it can trigger workflow of another repo either(seeing [documents of github](https://help.github.com/en/articles/events-that-trigger-workflows#external-events-repository_dispatch)):
 
 ```yml
 - name: Webhook
-  uses: joelwmale/webhook-action@master
-  env:
-    WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
+  uses: zzzze/webhook-action@master
   with:
-    data: "Hello from github actions!"
+    data: "{\"event_type\":\"build\"}"
+    webhook_url: ${{ secrets.WEBHOOK}}
+    options: "-H \"Accept: application/vnd.github.everest-preview+json\" -H \"Authorization: token ${{ secrets.TOKEN}}\""
 ```
 
-Sending a body of data:
+### Inputs
 
-```yml
-- name: Webhook
-  uses: joelwmale/webhook-action@master
-  env:
-    WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
-  with:
-    data: "{'deployment': 'finished', 'project': 'actions'}"
-```
-
-It is **highly** recommended to use the action is an explicit commit SHA-1:
-
-`uses = "joelwmale/webhook-action@master@{SHA-1}"` to find a commit click here: https://github.com/joelwmale/webhook-action/commits/master
-
-### Arguments
-
-* ```yml 
-  data: "Hello from github actions!"
-  ```
-
-* ```yml
-  data: "{'deployment': 'finished', 'project': 'actions'}"
-  ```
-
-### Environment
-
-The action is expecting a single environment variable of your data. This can be pre-encoded json string, or just a message. Format it to how your API is expecting.
-
-* **`WEBHOOK_URL`** (**required**): This is the webhook url to send the payload to.
+|  Name  |  Required  |  Default  |  Description | Example |
+| --- | --- | --- | --- | --- |
+|  webhook_url  |  true  |  ""  |  Endpoint URL  | "https://****" |
+|  data  |  true  |  ""  |  Data to be posted  | "{\\"event_type\\":\\"build\\"}" |
+|  options |  false  |  ""  |  Options  | "-a test" |
+|  user  |  false  |  ""  |  The user name and password to use for server authentication  | "user:password" |
 
 ## Issues
 
-If you find any issues or have an improvement feel free to [submit an issue](https://github.com/joelwmale/webhook-action/issues/new)
+If you find any issues or have an improvement feel free to [submit an issue](https://github.com/zzzze/webhook-action/issues/new)
 
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE) for more information.
 
-[ico-release]: https://img.shields.io/github/tag/joelwmale/webhook-action.svg
+[ico-release]: https://img.shields.io/github/tag/zzzze/webhook-action.svg
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg
-[link-github-release]: https://github.com/joelwmale/webhook-action/releases
+[link-github-release]: https://github.com/zzzze/webhook-action/releases
